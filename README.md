@@ -43,19 +43,33 @@ This tool removes manual Jira typing, enforces consistency, and updates tickets 
 
 ## 📸 Demo Video (MVP in Action)
 
-<p align="center">
-  <video width="700" controls>
-    <source src="./assets/3_Test_demo_Sep2nd.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-</p>
+🎬 **Watch the SwiftJIRA Demo**  
+Click below to see the full workflow in action (voice → AI agents → Jira update):
+
+▶️ https://drive.google.com/file/d/1GWi6_7UdJ8DmMrFVnIiv_LpKdDPrcdx5/view?usp=sharing
 
 ✅ This demo shows:
 - Voice recording through the Chrome Extension
 - Automatic transcript processing via n8n
 - AI agent generation of structured Jira Description + ACs
 - Live Jira update through REST API
+
 ---
+
+## 📚 Technical Documentation
+
+For a detailed breakdown of the system design, AI agent architecture, Jira API payload structure, and workflow execution logic, refer to the full technical document below:
+
+📄 **SwiftJIRA Technical Documentation**  
+🔗 https://docs.google.com/document/d/1SQKilkex95C9XPxQHnAqiDgv6XDyNzwi/edit?usp=sharing&ouid=105057989970111678662&rtpof=true&sd=true
+
+This document includes:
+- System Architecture Overview
+- Workflow Logic & AI Agent Behavior
+- Jira API Integration (ADF Payload Examples)
+- Error Handling and Edge Cases
+- n8n Node Map and Execution Flow
+- Future Scalability Plan
 
 ## 🧩 System Overview
 
