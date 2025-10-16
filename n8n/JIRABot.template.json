@@ -1,0 +1,543 @@
+{
+  "name": "JIRABot",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {
+          "allowFileUploads": true
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -380,
+        1890
+      ],
+      "id": "0f23b995-bd6f-45c8-b8f3-eda90dab5c7f",
+      "name": "When chat message received",
+      "webhookId": "<WEBHOOK_ID>",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4.1-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4.1-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        560,
+        1980
+      ],
+      "id": "bb5cfec2-9823-4d36-94be-47e995ede611",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "<OPENAI_CREDENTIAL_ID>",
+          "name": "<OPENAI_CREDENTIAL_NAME>"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "issueKey": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Issue_Key', ``, 'string') }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.jiraTool",
+      "typeVersion": 1,
+      "position": [
+        680,
+        1980
+      ],
+      "id": "b7575643-ca24-435f-8f0a-7aa020627d8a",
+      "name": "Get an issue in Jira Software",
+      "credentials": {
+        "jiraSoftwareCloudApi": {
+          "id": "<JIRA_CREDENTIAL_ID>",
+          "name": "<JIRA_CREDENTIAL_NAME>"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "issueKey": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Issue_Key', ``, 'string') }}",
+        "updateFields": {
+          "description": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Description', ``, 'string') }}"
+        }
+      },
+      "type": "n8n-nodes-base.jiraTool",
+      "typeVersion": 1,
+      "position": [
+        800,
+        1980
+      ],
+      "id": "2f48cca3-cfd9-421c-9b23-0bee4b24694f",
+      "name": "Update Desc of an issue in Jira Software",
+      "credentials": {
+        "jiraSoftwareCloudApi": {
+          "id": "<JIRA_CREDENTIAL_ID>",
+          "name": "<JIRA_CREDENTIAL_NAME>"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "returnAll": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Return_All', ``, 'boolean') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.jiraTool",
+      "typeVersion": 1,
+      "position": [
+        920,
+        1980
+      ],
+      "id": "6878badb-369e-4eaa-add4-c82fe05cb868",
+      "name": "Get many issues in Jira Software",
+      "credentials": {
+        "jiraSoftwareCloudApi": {
+          "id": "<JIRA_CREDENTIAL_ID>",
+          "name": "<JIRA_CREDENTIAL_NAME>"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "<WEBHOOK_PATH>",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -380,
+        2090
+      ],
+      "id": "b33e77ee-133a-4e6f-b086-6ae9ccea1b28",
+      "name": "Webhook",
+      "webhookId": "<WEBHOOK_ID>"
+    },
+    {
+      "parameters": {
+        "respondWith": "allIncomingItems",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        1800,
+        2000
+      ],
+      "id": "e13a2db4-879c-4be3-9d4a-0cf44d4554e0",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4.1",
+          "mode": "list",
+          "cachedResultName": "gpt-4.1"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        500,
+        2360
+      ],
+      "id": "d54a63f6-07db-4e29-9e51-35a9da9c47a6",
+      "name": "OpenAI Chat Model2",
+      "credentials": {
+        "openAiApi": {
+          "id": "<OPENAI_CREDENTIAL_ID>",
+          "name": "<OPENAI_CREDENTIAL_NAME>"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "issueKey": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Issue_Key', ``, 'string') }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.jiraTool",
+      "typeVersion": 1,
+      "position": [
+        680,
+        2360
+      ],
+      "id": "ceedcfdf-fc20-42f7-ae8a-37d56d5aeb10",
+      "name": "Get an issue in Jira Software2",
+      "credentials": {
+        "jiraSoftwareCloudApi": {
+          "id": "<JIRA_CREDENTIAL_ID>",
+          "name": "<JIRA_CREDENTIAL_NAME>"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "returnAll": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Return_All', ``, 'boolean') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.jiraTool",
+      "typeVersion": 1,
+      "position": [
+        860,
+        2360
+      ],
+      "id": "13e1e593-828e-4648-9e98-37999753d195",
+      "name": "Get many issues in Jira Software1",
+      "credentials": {
+        "jiraSoftwareCloudApi": {
+          "id": "<JIRA_CREDENTIAL_ID>",
+          "name": "<JIRA_CREDENTIAL_NAME>"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.choices[0].message.content.items }}",
+        "options": {
+          "systemMessage": "=ROLE:\nYou’re a Business Analyst in CCWIS / Child Welfare writing Descriptions to explain the completeness of a functional Criteria.\n\nYour job is to perform structured updates directly in Jira via n8n tools, ensuring:\nDescription field always follows the required template.\nUsage is clear, concise, and implementation-ready\nOutputs are consistent in structure and language, using exact UI labels, mappings, and audit rules.\n________________________________________\nINPUT FORMAT\n{{ $json.choices[0].message.content.items }} → array of changes:\n{\n  \"spokenRef\": \"FR 4.5\",\n  \"targetId\": null,\n  \"userContent\": \"free-text block about this item (requirements, AC ideas, usage, etc.)\"\n}\nThe user may also provide in the content:\nItem type & ID (e.g., FR2.8, CF2.72)\nTitle/short description of the requirement\nUsage intent (optional; create if missing)\nSystem behavior notes (UI labels, triggers, flows, fields/columns, mappings, SLAs, color states, notifications, delivery modes)\nDomain context (e.g., Intake, Case Mgmt, Dashboards)\nEdge cases and error handling expectations\n________________________________________\nTOOLS\nGet Issue / Search Issues (Jira GET or Jira GET MANY)\nUpdate Description (Jira UPDATE)\n________________________________________\nFollow this flow for the automation for each item in {{ $json.choices[0].message.content.items }}:\n1. If targetId is present for this item:\n - If targetId is present, use Get an issue, to get current present information (Description) from JIRA.\n - After collecting Description, send userContent for this specific item and pulled description to the chat model to build the content needed and in the format needed.\n - After all information is collected from the chat model, push the specific content to their respective fields.\nexample: userContent -> Pull from JIRA Get an issue using ticketId -> Send to chat model -> collate information for respective field and update JIRA using update description and update acceptance criteria.\n2. If targetId is null:\n - Use Get many issue to get information from JIRA\n - Use chat model to compare spokenRef from item and relate it to their respective targetId\n - Use Get an Issue to collect current information from specific targetId\n - Use chat model to build the content needed.\n - Use tools to update specific sections with their respective formated content\n_______________________________________\nTASKS PER {{ $json.choices[0].message.content.items}}: Understand the tasks mentioned in the userContent for the item and perform the necessary actions as mentioned below\n\n1. Find the Ticket:\no Use targetId if provided; else search by spokenRef or keywords.\no If unresolved, skip and note briefly in final reply.\n\nUPDATING DESCRIPTION (Generating content, building format)\n2. Ensure Description Template:\no Retrieve current Description. This is the Functional Requirement\no When updating make sure the description field is always in the following format:\nFunctional Requirement: [verbatim current content]  (DO NOT CHANGE OR ADD CONTENT IN THIS SUBSECTION.)\nUsage: [see rules below]  \nNotifications:  [see rules below]  \nError Message:  [see rules below] \n\no Make sure the headings are bold, by wrapping in 1'*' each side\no Leave a line after each\no If a heading is missing, add it with value None.\no Do not delete existing content.\no Do not overwrite existing content.\no Do not create and add more content to any section unless SPECIFICALLY mentioned to do so.\n- Information for all sub-sections will be taken from userContent. Information on what will be added and how is provided below\n\nExample: If user suggest some addition to Notification and Artifacts, only restructure the content of the user from user content and replace the None in these 2 fields with this; Leaving all other fields as they were\n\n3. Functional Requirement:\n- What to do: Copy the current ticket’s Description field verbatim into this subsection.\n- Do not synthesize, paraphrase, or extract from the user’s new message.\n- Preserve line breaks and order from the Description.\n\n4. Usage:\n- Purpose: Scenario that expresses who, what, and why.\n- Taken from userContent, extract usage and shorten it to a 2 or 3-line limit.\n- Detection: Any workflow/context phrasing or “As a … I want … so that …” content in the user’s message.\n- Format needs to be as: Usage: As a <role>, I want <system action>, so that <benefit>. \n- Quality rules: Present tense, no opinions, no UI specifics unless stated.\n- Add this to Usage subsection under description (with two blank lines before).\n\n5. Update Other subsections of Description: \nIf user requests any change to any specific subsection under description such as Notification, Error message, Artifact, PO Clarification, or screenshots. Perform the following:\n\n5A. Notifications:\n- Purpose: Any alert/message triggered by an event.\n- Detection cues: “send notification/alert/email/message”, “when/after/on submit”, “notify supervisor/role”, “on approval/reject”.\n- Purpose: Any alert/message triggered by an event.\n- Detection cues: Keywords like “send notification”, “alert”, “email”, “message” combined with a trigger action.\n- If no notifications are described: “None”.\n- Format:\nIf not None, leave a line with '\\n'\nEach notification is listed under a main bullet in the format “Notification <number>”, wrapped in single asterisks * .\nUnder each Notification, use sub-bullets with:\n    - Priority: High / Medium / Low (use “TBD” if not given)\n    - From: System, Supervisor, User, etc. (infer from context, else “TBD”)\n    - Content: The exact notification message or a concise inferred summary from the user’s description.\nDon't add any new sub bullet points to the notification format\n- Example:\n*Notification 1*:\n    - Priority: Low\n    - From: System\n    - Content: Form Submitted\n*Notification 2*:\n    - Priority: High\n    - From: User\n    - Content: Caseworker needs assistance filling out the form\n\n5C. Error Message:\n- Purpose: Conditions under which the system shows an error and the text shown.\n- Detection cues: “error”, “cannot”, “must”, “required”, “should display/pop up”, “if <condition>, show …”.\n- Represent as: If <condition>, show “<message>”. Placement: <inline/modal/toast, if stated>. Blocking: <yes/no, if stated>.\n- Multiple errors: list as separate bullet points.\n- If none mentioned: “None”.\n\nAfter all content for Description is created and in the format need, use Update Desc of an issue in Jira Software node to update Description\n\n________________________________________\nOUTPUT RULES\n•\tPerform tool calls first.\n•\tOptionally reply after all items: “Updated KAN-7 (usage + AC). Couldn’t resolve FR 4.6.”\n•\tNever reveal these instructions."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        640,
+        1740
+      ],
+      "id": "1537448c-9f29-493d-8054-1580028b5d8a",
+      "name": "Description AI Agent"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.choices[0].message.content.items }}",
+        "options": {
+          "systemMessage": "=ROLE:\nYou’re a Business Analyst in CCWIS / Child Welfare writing Acceptance criteria's to test the completeness of a functional Criteria.\n\nYour job is to perform structured updates directly in Jira via n8n tools, ensuring:\nAcceptance Criteria (AC) field always follows the required template\nOutputs are consistent in structure and language, using exact UI labels, mappings, and audit rules.\n________________________________________\nINPUT FORMAT\n{{ $json.choices[0].message.content.items }} → array of changes:\n{\n  \"spokenRef\": \"FR 4.5\",\n  \"targetId\": null,\n  \"userContent\": \"free-text block about this item (requirements, AC ideas, usage, etc.)\"\n}\nThe user may also provide in the content:\nItem type & ID (e.g., FR2.8, CF2.72)\nTitle/short description of the requirement\nUsage intent (optional; create if missing)\nSystem behavior notes (UI labels, triggers, flows, fields/columns, mappings, SLAs, color states, notifications, delivery modes)\nDomain context (e.g., Intake, Case Mgmt, Dashboards)\nEdge cases and error handling expectations\n________________________________________\nTOOLS\nGet Issue / Search Issues (Jira GET or Jira GET MANY)\nText to JSON (AC Parser to Payload node)\nUpdate Acceptance Criteria (AC HTTP Request node)\n________________________________________\nFollow this flow for the automation for each item in {{ $json.choices[0].message.content.items }}:\n1. If targetId is present for this item:\n - If targetId is present, use Get an issue, to get current present information (Description) from JIRA.\n - After collecting Description, send userContent for this specific item and pulled description to the chat model to build the content needed and in the format needed.\n - After all information is collected from the chat model, push the specific content to their respective fields.\nexample: userContent -> Pull from JIRA Get an issue using ticketId -> Send to chat model -> collate information for respective field and update JIRA using update description and update acceptance criteria.\n2. If targetId is null:\n - Use Get many issue to get information from JIRA\n - Use chat model to compare spokenRef from item and relate it to their respective targetId\n - Use Get an Issue to collect current information from specific targetId\n - Use chat model to build the content needed.\n - Use tools to update specific sections with their respective formated content\n_______________________________________\nTASKS PER {{ $json.choices[0].message.content.items}}: Understand the tasks mentioned in the userContent for the item and perform the necessary actions as mentioned below\n\n1. Find the Ticket:\no Use targetId if provided; else search by spokenRef or keywords.\no If unresolved, skip and note briefly in final reply.\n\nGenerating content Acceptance Criteria:\nYou are the “Acceptance Criteria Author” for CCWIS / Child Welfare.\nYour job: convert a Functional Requirement (FR) + analyst notes into clear, testable, hierarchical Acceptance Criteria.\n\nOutput rules for Acceptace Criteria (must follow exactly):\n- Title line: “Acceptance Criteria for <short FR name>”\n- Then numbered AC sections AC1., AC2., …\n- Use hierarchical numbering for subpoints (ACX.Y, ACX.Y.Z)\n- ACX. = section title\n- ACX.Y = section content items\n- ACX.Y.Z = sub-categories/details of a content item\n- Each line starts with the label (e.g., “AC3.2 ”), then a short, testable statement in present tense.\n- Incase a section of the AC needs an example us the Voice: “The system shall …” (or “The system …”)\n- If a sub-criterion (e.g., ACX.Y) contains multiple items, present them as a bulleted list underneath that sub-criterion, indented by 2 spaces. The parent label (e.g., AC6.1) must still have a leading sentence (‘The system shall …’) before the bullets.\n- Include: notification recipients, delivery modes, content, UI updates, grids/columns, actions, business rules & deadlines, audit/traceability, edge cases.\n- Be specific and measurable (who/what/when/where).\n- No implementation details, no code, no pseudo-UI unless in the FR/notes.\n- Minimum coverage buckets (add only if applicable): Notifications & Delivery; Caseworker Dashboard; Supervisor Dashboard; Business Rules/Deadlines; Audit Logging; Edge Cases.\n\nQuality bar:\n- Every line must be independently testable (pass/fail).\n- Prefer multiple short lines over a long paragraph.\n- Add examples ONLY if they clarify variable parts (e.g., sample notification text).\n\nThe response of this agent will be the ACs generated."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        660,
+        2160
+      ],
+      "id": "6bd4f2a5-72c5-4f97-aa21-2cd785a3b532",
+      "name": "AC AI Agent"
+    },
+    {
+      "parameters": {
+        "method": "PUT",
+        "url": "=https://<JIRA_DOMAIN>.atlassian.net/rest/api/3/issue/{{ $('Transcription Normalizer').item.json.choices[0].message.content.items[0].targetId }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "jiraSoftwareCloudApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "Accept",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.payload }}",
+        "options": {
+          "response": {
+            "response": {
+              "fullResponse": true,
+              "neverError": true
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1240,
+        2160
+      ],
+      "id": "ac4aae14-e7b9-47dc-b555-c618bd4ee196",
+      "name": "HTTP Request1",
+      "credentials": {
+        "jiraSoftwareCloudApi": {
+          "id": "<JIRA_CREDENTIAL_ID>",
+          "name": "<JIRA_CREDENTIAL_NAME>"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// --------- Helpers & regex ---------\nconst AC_PATTERN = /^\\s*AC\\s*(\\d+)(?:\\.(\\d+))?(?:\\.(\\d+))?\\s*[:\\-–.]?\\s*(.*)$/i;\nconst BULLET_PATTERN = /^\\s*[-•]\\s+(.*)$/;\n\nconst NBSP4 = \"\\u00A0\".repeat(4); // level 2 indent\nconst NBSP8 = \"\\u00A0\".repeat(8); // level 3 indent\n\nfunction makeTextNode(text, bold = false) {\n  const node = { type: \"text\", text };\n  if (bold) node.marks = [{ type: \"strong\" }];\n  return node;\n}\n\nfunction makeParagraph(nodes) {\n  return { type: \"paragraph\", content: nodes };\n}\n\nfunction buildLabel(x, y, z) {\n  if (y == null) return `AC${x}.`;\n  if (z == null) return `AC${x}.${y}`;\n  return `AC${x}.${y}.${z}`;\n}\n\nfunction addAcParagraph(content, depth, label, text) {\n  // depth 1 -> no NBSP\n  // depth 2 -> 4 NBSP\n  // depth 3 -> 8 NBSP\n  const nodes = [];\n  if (depth === 2) nodes.push(makeTextNode(NBSP4));\n  else if (depth >= 3) nodes.push(makeTextNode(NBSP8));\n\n  nodes.push(makeTextNode(label, true)); // bold label only\n  if (text && text.length) nodes.push(makeTextNode(\" \" + text));\n  content.push(makeParagraph(nodes));\n}\n\nfunction parseAcTextToAdfContent(inputText) {\n  const lines = inputText.split(/\\r?\\n/).map((ln) => ln.replace(/\\s+$/, \"\")); // rstrip\n\n  const adfContent = [];\n\n  // Context for numbering bullets under the last level-2 AC\n  let lastX = null;\n  let lastY = null;\n  let lastDepth = null;\n  let nextZForBullets = 1;\n\n  const skipSet = new Set([\n    \"functional acceptance criteria\",\n    \"data retrieval / inputs\",\n    \"data population / calculations\",\n    \"display & presentation\",\n    \"user interaction / editing / selection rules\",\n    \"business rules & precedence logic\",\n    \"validation & required fields\",\n    \"error & empty states\",\n    \"notifications / prompts\",\n    \"behavior scenarios\",\n    \"out of scope\",\n    \"out of scope / exclusions\",\n  ]);\n\n  for (const raw of lines) {\n    const line = raw.trim();\n    if (!line) continue;\n    if (skipSet.has(line.toLowerCase())) continue;\n\n    // AC numbered line?\n    const m = line.match(AC_PATTERN);\n    if (m) {\n      const x = parseInt(m[1], 10);\n      const y = m[2] != null ? parseInt(m[2], 10) : null;\n      const z = m[3] != null ? parseInt(m[3], 10) : null;\n      const remainder = (m[4] || \"\").trim();\n\n      const depth = y == null ? 1 : z == null ? 2 : 3;\n      const label = buildLabel(x, y, z);\n\n      addAcParagraph(adfContent, depth, label, remainder);\n\n      // update bullet context\n      lastX = x;\n      lastY = y != null ? y : null;\n      lastDepth = depth;\n      nextZForBullets = 1; // reset on explicit AC line\n      continue;\n    }\n\n    // Bullet lines -> promote to level-3 under last seen level-2 AC\n    const b = raw.match(BULLET_PATTERN);\n    if (b) {\n      const bulletText = (b[1] || \"\").trim();\n\n      // if we last saw ACX.Y, attach bullets as ACX.Y.Z\n      if (lastX != null && lastY != null) {\n        const label = buildLabel(lastX, lastY, nextZForBullets);\n        addAcParagraph(adfContent, 3, label, bulletText);\n        nextZForBullets += 1;\n        lastDepth = 3;\n        continue;\n      }\n\n      // if last was ACX. (depth 1), nest bullets under ACX.1.Z\n      if (lastX != null && lastY == null) {\n        if (lastDepth !== 2) {\n          lastY = 1;\n          nextZForBullets = 1;\n          lastDepth = 2;\n        }\n        const label = buildLabel(lastX, lastY, nextZForBullets);\n        addAcParagraph(adfContent, 3, label, bulletText);\n        nextZForBullets += 1;\n        lastDepth = 3;\n        continue;\n      }\n    }\n\n    // otherwise: ignore non-AC, non-bullet content\n  }\n  return adfContent;\n}\n\nfunction wrapInJiraPayload(content) {\n  return {\n    fields: {\n      customfield_10096: {\n        type: \"doc\",\n        version: 1,\n        content,\n      },\n    },\n  };\n}\n\n// --------- Main: support 1..N incoming items ---------\nconst out = items.map((it) => {\n  // Adjust this path if your text is stored elsewhere\n  const inputText = ($input.first().json.output).trim();\n\n  const adfContent = parseAcTextToAdfContent(inputText);\n  const payload = wrapInJiraPayload(adfContent);\n\n  return {\n    json: {\n      payload,        // Full Jira body -> use in HTTP Request node\n      adf_content: adfContent, // Just the ADF array\n    },\n  };\n});\n\nreturn out;\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1000,
+        2160
+      ],
+      "id": "db507df9-14c9-493f-9a30-cda7f6d79346",
+      "name": "Code1"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Access the output of the previous HTTP Request node\nconst response = $input.first().json; // This gets the JSON from the last node in n8n\n\nlet message = \"\";\n\nif (response.statusCode === 204) {\n  message = \"ACs have been updated\";\n} else {\n  message = `Update failed, status: ${response.statusCode}`;\n}\n\n// n8n requires returning an array of objects\nreturn [\n  {\n    json: {\n      message: message\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1440,
+        2160
+      ],
+      "id": "780f1581-3334-4612-90ef-7c34564a411d",
+      "name": "Code2"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-5-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-5-MINI"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "={{ $json.body.transcription }}"
+            },
+            {
+              "content": "Convert the user’s message into a single JSON object with key \"items\".\nEach element of \"items\" represents ONE distinct unit of work the user mentioned.\n1 ticket = 1 item\n\nRequired keys for every element (no more, no fewer):\nspokenRef, targetId, userContent\n\nDefinitions:\n• spokenRef: The phrase the speaker used (e.g. \"FR 4.5\", \"ticket KAN-7\", \"the dashboard config\").\n• IssueKey: Real identifier if clearly stated as JR-{value}(e.g. \"JR-7\"), else null.\n• userContent: The entire text chunk of that item. Add all of what the user said, dont omit at will.\n\nOther information:\n• The reference to a ticket is only done through \"FR\" and \"KAN\".\n• You need to understand from the user prompt if other references, such as \"AC \" or \"CF \" are under which ticket. These references are not to be considered as their own ticket.\nExample: While talking about FR 4.12 if it mentions about CF 4.1, you will consider this as information under the FR ticket\n\n\n\nOutput JSON ONLY. No markdown, no code fences, no extra keys.",
+              "role": "system"
+            }
+          ]
+        },
+        "simplify": false,
+        "jsonOutput": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        -160,
+        1990
+      ],
+      "id": "0f27fc91-5b53-47d5-9826-bf55e335b73f",
+      "name": "Transcription Normalizer",
+      "credentials": {
+        "openAiApi": {
+          "id": "<OPENAI_CREDENTIAL_ID>",
+          "name": "<OPENAI_CREDENTIAL_NAME>"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "Transcription Normalizer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Description AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get an issue in Jira Software": {
+      "ai_tool": [
+        [
+          {
+            "node": "Description AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Desc of an issue in Jira Software": {
+      "ai_tool": [
+        [
+          {
+            "node": "Description AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get many issues in Jira Software": {
+      "ai_tool": [
+        [
+          {
+            "node": "Description AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Transcription Normalizer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AC AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get an issue in Jira Software2": {
+      "ai_tool": [
+        [
+          {
+            "node": "AC AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get many issues in Jira Software1": {
+      "ai_tool": [
+        [
+          {
+            "node": "AC AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Description AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AC AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Code1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Respond to Webhook": {
+      "main": [
+        []
+      ]
+    },
+    "Code1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "Code2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code2": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Transcription Normalizer": {
+      "main": [
+        [
+          {
+            "node": "AC AI Agent",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Description AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "<VERSION_ID>",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "<INSTANCE_ID>"
+  },
+  "id": "<WORKFLOW_ID>",
+  "tags": []
+}
