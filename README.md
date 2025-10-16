@@ -27,9 +27,82 @@ This tool removes manual Jira typing, enforces consistency, and updates tickets 
 
 ---
 
-## Demo Video (MVP in Action)
+## 🚀 What It Does
 
-<video src="assets/3_Test_demo_Sep2nd.mp4" width="720" controls>
-  Your browser does not support the video tag.
-  <a href="assets/3_Test_demo_Sep2nd.mp4">Watch the demo video</a>.
-</video>
+| Feature | Description |
+|----------|-------------|
+| 🎙️ Voice Input | Record requirements using the Chrome Extension |
+| 🤖 AI Automation | AI parses requirements and generates structured Jira content |
+| 🧱 Description Builder | Enforces enterprise template: Functional Requirement, Usage, Notifications, Error Handling |
+| ✅ Acceptance Criteria Writer | Generates hierarchical ACs (AC1, AC1.1, AC1.1.1…) |
+| 🔄 Jira Sync | Auto-updates Jira fields via REST API |
+| 🔗 n8n Workflow Orchestrator | Multi-agent pipeline feeds Jira updates |
+| 🔐 Secure API Use | STT + OpenAI + Jira credentialed communication |
+
+---
+
+## 📸 Demo Video (MVP in Action)
+
+<p align="center">
+  <video width="700" controls>
+    <source src="./assets/3_Test_demo_Sep2nd.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</p>
+
+✅ This demo shows:
+- Voice recording through the Chrome Extension
+- Automatic transcript processing via n8n
+- AI agent generation of structured Jira Description + ACs
+- Live Jira update through REST API
+---
+
+## 🧩 System Overview
+
+SwiftJIRA integrates **three major components**:
+
+| Component | Purpose |
+|-----------|---------|
+| Chrome Extension | Front-end voice capture |
+| n8n AI Workflow | Orchestrates AI agents and Jira integration |
+| Jira Cloud API | Receives structured updates automatically |
+
+n8n workflow based on `JIRABot.json` handles the automation logic intelligently.
+
+---
+
+## 🧠 AI Agent Design
+
+SwiftJIRA uses **two specialized AI agents**:
+
+| Agent | Role |
+|--------|------|
+| Description Agent | Builds structured Jira Descriptions by merging existing content + user voice instructions |
+| Acceptance Criteria Agent | Generates full AC hierarchy + converts to valid Atlassian Document Format (ADF) for Jira |
+
+These behaviors follow the rules defined in your AI Automation design.
+
+---
+
+## 🛡️ Security & Privacy
+
+- Jira authentication secured with API Tokens
+- API keys never stored in code, only in secure config
+- Chrome Extension uses `chrome.storage.sync` for secure local key storage
+- All data processed securely over HTTPS
+- No personal data stored
+
+---
+
+## 💻 Tech Stack
+
+```yaml
+Voice Input: Chrome Extension (Manifest V3)
+Speech-to-Text: fal.ai Whisper API
+AI Models: OpenAI GPT-4.1 / GPT-5 Mini
+Automation Engine: n8n Workflow Orchestration
+APIs: Jira Cloud REST API
+Code: JavaScript, Node.js, JSON, Atlassian ADF
+## Demo Video
+- File: [assets/3_Test_demo_Sep2nd.mp4](assets/3_Test_demo_Sep2nd.mp4)
+- Summary: Walkthrough demonstrating the workflow and UI interactions.
