@@ -93,3 +93,6 @@ AI Models: OpenAI GPT-4.1 / GPT-5 Mini
 Automation Engine: n8n Workflow Orchestration
 APIs: Jira Cloud REST API
 Code: JavaScript, Node.js, JSON, Atlassian ADF
+## Demo Video
+- File: [assets/3_Test_demo_Sep2nd.mp4](assets/3_Test_demo_Sep2nd.mp4)
+- Summary: Walkthrough demonstrating the workflow and UI interactions.
