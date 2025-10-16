@@ -1,0 +1,22 @@
+{
+  "name": "audio-transcription-extension",
+  "version": "1.0.0",
+  "description": "Chrome extension for audio recording and transcription using fal.ai",
+  "main": "popup.js",
+  "scripts": {
+    "install": "npm install",
+    "build": "npm install && cp node_modules/@fal-ai/client/dist/index.js fal-client.js"
+  },
+  "dependencies": {
+    "@fal-ai/client": "^1.6.1"
+  },
+  "keywords": [
+    "chrome-extension",
+    "audio",
+    "transcription",
+    "fal.ai",
+    "whisper"
+  ],
+  "author": "",
+  "license": "MIT"
+}

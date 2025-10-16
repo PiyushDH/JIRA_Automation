@@ -1,0 +1,16 @@
+# FAL.AI API Configuration
+# Get your API key from: https://fal.ai/dashboard/keys
+FAL_KEY=fal-key-your-api-key-here
+
+# N8N Webhook Configuration (replace with your actual n8n webhook URL)
+N8N_WEBHOOK_URL=https://your-n8n-instance.app/webhook/audio-transcription
+
+# Optional: Additional configuration
+EXTENSION_VERSION=1.0.0
+DEBUG_MODE=false
+
+# Instructions:
+# 1. Copy this file to .env in your project root
+# 2. Replace FAL_KEY with your actual FAL.AI API key
+# 3. Replace N8N_WEBHOOK_URL with your n8n webhook endpoint
+# 4. The Chrome extension will store the API key in browser storage for security 
